@@ -1,6 +1,9 @@
 package userlib
 
-import "io/ioutil"
+import (
+	"io/ioutil"
+	"path"
+)
 
 type fileReader func(string)([]byte, error)
 
@@ -27,4 +30,28 @@ func ReadFile(filename string)(data []byte, err error){
 
 func ReplaceReadFile(newfunc func(string)([]byte, error)){
 	F = newfunc
+}
+
+func GetContentType(filename string) (string) {
+	extension := path.Ext(filename)
+	switch extension {
+	case ".htm":
+		fallthrough
+	case ".html":
+		return "text/html"
+	case ".jpeg":
+		fallthrough
+	case ".jpg":
+		return "image/jpeg"
+	case ".png":
+		return "image/png"
+	case ".css":
+		return "text/css"
+	case ".js":
+		return "application/javascript"
+	case ".pdf":
+		return "application/pdf"
+	default:
+		return "text/plain; charset=utf-8"
+	}
 }
