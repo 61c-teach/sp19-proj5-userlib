@@ -17,19 +17,29 @@ const (
 	CacheCloseMessage = "The cache has been cleared!"
 )
 
-var f fileReader = func(workingDir string, filename string)(data []byte, err error){
-	data, err = ioutil.ReadFile(filename)
+var f fileReader = func(workingDir, filename string)(data []byte, err error){
+	filepath := GetRealFilePath(workingDir, filename)
+	data, err = ioutil.ReadFile(filepath)
 	return
 }
 
-func ReadFile(workingDir string, filename string)(data []byte, err error){
+func ReadFile(workingDir, filename string)(data []byte, err error){
 	data, err = f(workingDir, filename)
 	return
 }
 
-
 func ReplaceReadFile(newfunc func(string, string)([]byte, error)){
 	f = newfunc
+}
+
+func GetRealFilePath(workingDir, filename string) string {
+	if filename[0:2] == "./" {
+		filename = filename[2:]
+	}
+	if workingDir[len(workingDir) - 1:] != "/" {
+		workingDir = workingDir + "/"
+	}
+	return workingDir + filename
 }
 
 func GetContentType(filename string) (string) {
