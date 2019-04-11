@@ -15,6 +15,7 @@ const (
 	CapacityString = "Cache status:  # of entries %v\ntotal bytes occupied by entries %v\nmax allowed capacity %v\n"
 	TimeoutString = "The file request timed out!"
 	CacheCloseMessage = "The cache has been cleared!"
+	ContextType = "Content-Type"
 )
 
 var f fileReader = func(workingDir, filename string)(data []byte, err error){
