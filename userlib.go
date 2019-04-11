@@ -5,7 +5,7 @@ import (
 	"path"
 )
 
-type fileReader func(string)([]byte, error)
+type fileReader func(string, string)([]byte, error)
 
 const (
 	FILEERRORCODE = 404
@@ -17,19 +17,19 @@ const (
 	CacheCloseMessage = "The cache has been cleared!"
 )
 
-var F fileReader = func(filename string)(data []byte, err error){
+var f fileReader = func(workingDir string, filename string)(data []byte, err error){
 	data, err = ioutil.ReadFile(filename)
 	return
 }
 
-func ReadFile(filename string)(data []byte, err error){
-	data, err = F(filename)
+func ReadFile(workingDir string, filename string)(data []byte, err error){
+	data, err = f(workingDir, filename)
 	return
 }
 
 
-func ReplaceReadFile(newfunc func(string)([]byte, error)){
-	F = newfunc
+func ReplaceReadFile(newfunc func(string, string)([]byte, error)){
+	f = newfunc
 }
 
 func GetContentType(filename string) (string) {
