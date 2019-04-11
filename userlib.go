@@ -11,6 +11,7 @@ const (
 	SUCCESSCODE = 200
 	CapacityString = "Cache status:  # of entries %v\ntotal bytes occupied by entries %v\nmax allowed capacity %v\n"
 	TimeoutString = "The file request timed out!"
+	CacheCloseMessage = "The cache has been cleared!"
 )
 
 var F fileReader = func(filename string)(data []byte, err error){
