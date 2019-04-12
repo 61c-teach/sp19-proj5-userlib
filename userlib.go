@@ -12,7 +12,7 @@ const (
 	FILEERRORMSG = "File Read Error"
 	TIMEOUTERRORCODE = 408
 	SUCCESSCODE = 200
-	CapacityString = "Cache status:  # of entries %v\ntotal bytes occupied by entries %v\nmax allowed capacity %v\n"
+	CapacityString = "Cache status:  # of entries (%v)\ntotal bytes occupied by entries [%v]\nmax allowed capacity {%v}\n"
 	TimeoutString = "The file request timed out!\n"
 	CacheCloseMessage = "The cache has been cleared!\n"
 	ContextType = "Content-Type"
