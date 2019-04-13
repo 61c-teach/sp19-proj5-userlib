@@ -3,6 +3,7 @@ package userlib
 import (
 	"io/ioutil"
 	"path"
+	"time"
 )
 
 type fileReader func(string, string)([]byte, error)
@@ -20,6 +21,7 @@ const (
 
 var f fileReader = func(workingDir, filename string)(data []byte, err error){
 	filepath := GetRealFilePath(workingDir, filename)
+	time.Sleep(time.Duration(1) * time.Second)
 	data, err = ioutil.ReadFile(filepath)
 	return
 }
