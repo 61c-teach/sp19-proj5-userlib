@@ -29,7 +29,7 @@ var f fileReader = func(workingDir, filename string)(data []byte, err error){
 	// directory marker (./) and combining the dir with filename.
 	filepath := GetRealFilePath(workingDir, filename)
 	// We are just emulating a slower access to disk to make it clear that we are caching data.
-	time.Sleep(time.Duration(rand.Float64() * 3) * time.Second)
+	time.Sleep(time.Duration(rand.Float64() * 3 + 1) * time.Second)
 	// We finally do the file read which should not take too long.
 	data, err = ioutil.ReadFile(filepath)
 	return
